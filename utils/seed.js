@@ -15,15 +15,15 @@ connection.once("open", async () => {
 
   // Create empty array to hold the users
   const users = [];
-  const friends = [];
+  //   const thoughts = [];
+  const thoughts = getRandomThoughts(20);
 
   // Loop 20 times -- add users to the users array
   for (let i = 0; i < 20; i++) {
     // Get some random thought objects using a helper function that we imported from ./data
-    const thoughts = getRandomThoughts(20);
 
     const username = getRandomName();
-    const email = `${username.replace(/ /g, "")}@email.com`
+    const email = `${username.replace(/ /g, "")}@email.com`;
 
     users.push({
       username,

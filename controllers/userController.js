@@ -13,7 +13,7 @@ module.exports = {
   // Get a single user
   async getSingleUser(req, res) {
     try {
-      const user = await User.findOne({ _id: req.params.userId }).select(
+      const user = await User.findOne({ _id: req.params.id }).select(
         "-__v"
       );
 
@@ -40,10 +40,11 @@ module.exports = {
   async updateUser(req, res) {
     try {
       const user = await User.findOneAndUpdate(
-        { _id: req.params.userId },
+        { _id: req.params.id },
         { $set: req.body },
         { runValidators: true, new: true }
       );
+      res.json(user);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -51,14 +52,14 @@ module.exports = {
   // Delete a user and associated thoughts
   async deleteUser(req, res) {
     try {
-      const user = await User.findOneAndDelete({ _id: req.params.userId });
+      const user = await User.findOneAndDelete({ _id: req.params.id });
 
       if (!user) {
         return res.status(404).json({ message: "No user with that ID" });
       }
 
       await Thought.deleteMany({ _id: { $in: user.thoughts } });
-      res.json({ message: "User and associated apps deleted!" });
+      res.json({ message: "User has been deleted!" });
     } catch (err) {
       res.status(500).json(err);
     }
@@ -68,7 +69,7 @@ module.exports = {
   async addFriend(req, res) {
     try {
       const user = await User.findOneAndUpdate(
-        { _id: req.params.userId },
+        { _id: req.params.id },
         { $addToSet: { friends: req.params.friendId } },
         { new: true }
       );
@@ -86,7 +87,7 @@ module.exports = {
   async removeFriend(req, res) {
     try {
       const user = await User.findOneAndUpdate(
-        { _id: req.params.userId },
+        { _id: req.params.id },
         { $pull: { friends: req.params.friendId } },
         { new: true }
       );

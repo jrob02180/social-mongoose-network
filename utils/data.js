@@ -65,8 +65,10 @@ const names = [
         'Great thought',
     ];
 
+    // Get a random element from an array
     const getRandomArrItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
+    // Function to generate random thoughts.
     const getRandomThoughts = (int) => {
         const results = [];
         for (let i = 0; i < int; i++) {
@@ -84,6 +86,7 @@ const names = [
         return results;
     };
 
+    // Gets a random name
     const getRandomName = () =>
         `${getRandomArrItem(names)} ${getRandomArrItem(names)}`;
 
@@ -98,6 +101,6 @@ const names = [
         return results;
     };
 
-
-    module.exports = { getRandomName, getRandomThoughts };
+    // Export all functions as methods to be used in other files
+    module.exports = { getRandomName, getRandomThoughts, getThoughReactions };
         

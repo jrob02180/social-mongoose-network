@@ -1,5 +1,6 @@
 const { Schema, model, Types } = require("mongoose");
 
+// Schema to create a reaction model
 const reactionSchema = new Schema(
   {
     reactionId: {
@@ -19,7 +20,7 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (createdAtVal) => createdAtVal.toLocaleDateString()
+      get: (createdAtVal) => createdAtVal.toLocaleDateString(),
     },
   },
   {
@@ -30,6 +31,7 @@ const reactionSchema = new Schema(
   }
 );
 
+// Schema to create a thought model
 const thoughtSchema = new Schema(
   {
     thoughtText: {
@@ -41,7 +43,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (createdAtVal) => createdAtVal.toLocaleDateString()
+      get: (createdAtVal) => createdAtVal.toLocaleDateString(),
     },
     username: {
       type: String,
@@ -58,6 +60,7 @@ const thoughtSchema = new Schema(
   }
 );
 
+// Schema to create a virtual called reactionCount that retrieves the length of the thought's reactions array field on query.
 thoughtSchema
   .virtual("reactionCount")
   .get(function () {

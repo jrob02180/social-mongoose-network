@@ -16,10 +16,10 @@ connection.once("open", async () => {
   // Create empty array to hold the users
   const users = [];
   //   const thoughts = [];
-  const thoughts = getRandomThoughts(20);
+  const thoughts = getRandomThoughts(10);
 
-  // Loop 20 times -- add users to the users array
-  for (let i = 0; i < 20; i++) {
+  // Loop 10 times -- add users to the users array
+  for (let i = 0; i < 10; i++) {
     // Get some random thought objects using a helper function that we imported from ./data
 
     const username = getRandomName();

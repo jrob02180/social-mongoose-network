@@ -41,9 +41,9 @@ userSchema
   .get(function () {
     return this.friends.length;
   })
-  .set(function (v) {
-    return (this.friends.length = v);
-  });
+  // .set(function (v) {
+  //   return (this.friends.length = v);
+  // });
 
 const User = model("User", userSchema);
 

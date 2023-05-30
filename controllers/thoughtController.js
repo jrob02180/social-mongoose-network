@@ -90,12 +90,13 @@ module.exports = {
     }
   },
   // Remove a reaction
-  async deleteReaction(req, res) {
+  async deleteReaction( req, res) {
+    console.log("testing")
     try {
-      const thought = await Thought.findOneAndRemove(
+      const thought = await Thought.findOneAndUpdate(
         { _id: req.params.id },
-        { $pull: { reactions: { reactionId: req.params.reactionId } } },
-        { runValidators: true, new: true }
+        { $pull: { reactions: { reactionId: req.params.reactionId} }},
+        { setDefaultsOnInsert: false, upInsert: false, new: true }
       );
 
       if (!thought) {

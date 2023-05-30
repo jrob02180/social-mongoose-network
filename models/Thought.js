@@ -10,8 +10,7 @@ const reactionSchema = new Schema(
     reactionBody: {
       type: String,
       required: true,
-      min_length: 1,
-      max_length: 280,
+      maxLength: 280,
     },
     username: {
       type: String,
@@ -20,7 +19,7 @@ const reactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (createdAtVal) => createdAtVal.toLocaleDateString(),
+      // get: (createdAtVal) => createdAtVal.toLocaleDateString(),
     },
   },
   {
@@ -37,13 +36,13 @@ const thoughtSchema = new Schema(
     thoughtText: {
       type: String,
       required: true,
-      min_length: 1,
-      max_length: 280,
+      minLength: 1,
+      maxLength: 280,
     },
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (createdAtVal) => createdAtVal.toLocaleDateString(),
+      // get: (createdAtVal) => createdAtVal.toLocaleDateString(),
     },
     username: {
       type: String,
@@ -66,9 +65,9 @@ thoughtSchema
   .get(function () {
     return this.reactions.length;
   })
-  .set(function (v) {
-    return (this.reactions.length = v);
-  });
+  // .set(function (v) {
+  //   return (this.reactions.length = v);
+  // });
 
 const Thought = model("thought", thoughtSchema);
 
